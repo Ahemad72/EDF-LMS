@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /EDF-LMS
 
 # Copy the jar file into the container at /app
-COPY ./EDF-LMS
+COPY ./EDF-LMS edf-lms
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
