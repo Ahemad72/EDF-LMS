@@ -1,14 +1,18 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-alpine
+# Use a Java base image
+FROM openjdk:17-alpine
 
-# Set the working directory in the container
+# Set the working directory to /app
 WORKDIR /EDF-LMS
 
-# Copy the jar file into the container at /app
-COPY ./EDF-LMS edf-lms
+# Copy the Spring Boot application JAR file into the Docker image
+COPY target/LMS-0.0.1-SNAPSHOT.jar /EDF-LMS/LMS-0.0.1-SNAPSHOT.jar
 
-# Make port 8080 available to the world outside this container
+# Set environment variables
+ENV SERVER_PORT=8080
+ENV LOGGING_LEVEL=INFO
+
+# Expose the port that the Spring Boot application is listening on
 EXPOSE 8080
 
-# Run the jar file
-ENTRYPOINT ["java", "-jar", "edf-lms.jar"]
+# Run the Spring Boot application when the container starts
+CMD ["java", "-jar", "mobile-app-ws-0.0.1-SNAPSHOT.jar"]
